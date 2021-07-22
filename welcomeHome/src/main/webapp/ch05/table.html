@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+</head>
+
+<body>
+    <table style="display: inline-block; width: 50px;">
+        <caption>회원가입</caption>
+        <tbody>
+            <tr>
+                <form action="" method="GET">
+                    <td>-아이디</td>
+                    <td colspan="2"><input type="text" name="id"></td>
+                    <td><input type="submit" value="중복확인"></td>
+            </tr>
+            <tr>
+                <td rowspan="2">-비밀번호</td>
+                <td colspan="3"><input type="password" name="pw"></td>
+            </tr>
+            <tr>
+                <td colspan="3"><input type="password" name="pw" placeholder="비밀번호 재확인"></td>
+            </tr>
+            <tr>
+                <td>-이름</td>
+                <td colspan="3"><input type="text" name="name"></td>
+            </tr>
+            <tr>
+                <td rowspan="3">-주소</td>
+                <td><input type="text" name="add">-</td>
+                <td><input type="text" name="add"></td>
+                <td><input type="submit" value="우편번호"></td>
+            </tr>
+            <tr>
+                <td colspan="3"><input type="text" name="pw"></td>
+            </tr>
+            <tr>
+                <td colspan="3"><input type="text" name="pw"></td>
+            </tr>
+            <tr>
+                <td>-휴대전화</td>
+                <td>
+                    <select name="tel">
+                        <option value="1" selected>010</option>
+                        <option value="2">017</option>
+                        <option value="3">011</option>
+                    </select>
+                </td>
+                <td><input type="text" name="tel"></td>
+                <td><input type="text" name="tel"></td>
+            </tr>
+            <tr>
+                <td>-전화번호</td>
+                <td>
+                    <select name="tel">
+                        <option value="1" selected>010</option>
+                        <option value="2">017</option>
+                        <option value="3">011</option>
+                    </select>
+                </td>
+                <td><input type="text" name="tel"></td>
+                <td><input type="text" name="tel"></td>
+            </tr>
+            <tr>
+                <td>-이메일</td>
+                <td><input type="text" name="mail"></td>
+                <td>
+                    <select name="email">
+                        <option value="1" selected>@naver.com</option>
+                        <option value="2">@gamil.com</option>
+                        <option value="3">@daum.net</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td rowspen="2">-생년월일</td>
+                <td><input type="radio" name="date" value="1" checked>양</td>
+                <td><input type="radio" name="date" value="2" >음</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="date" name="year">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4"><input type="checkbox" name="sns" value= "sns" checked>메일을 수신합니다.</td>
+            </tr>
+            <tr>
+                <td colspan="4"><input type="checkbox" name="sns" value= "sns" checked>SMS을 수신합니다.</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="background-color: darkslategray;"><input type="submit" value="가입취소"></td>
+                <td colspan="2" style="background-color: crimson;"><input type="submit" value="회원가입"></td>
+            </tr>
+        </form>
+        </tbody>
+    </table>
+</body>
+
+</html>
