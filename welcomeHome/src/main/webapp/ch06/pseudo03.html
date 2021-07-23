@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ch06/pseudo03.html</title>
+    <style>
+        div {
+            color: white;
+        }
+
+        h2::first-letter {
+            font-size: 30px;
+            color: red;
+            text-transform: uppercase;
+        }
+
+        h3::first-line {
+            color: blue;
+        }
+
+        input:focus {
+            background-color: crimson;
+        }
+
+        input:checked+div.d1 {
+            background-color: plum;
+        }
+
+        input:checked+div.d2 {
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>states pseudo-classes</h2>
+    <h3>문제)대한민국 수도는?</h3>
+    <p>정답작성 : <input type="text"></p>
+    <h2>answer</h2>
+    힌트보기 : <input type="checkbox">
+    <div class="d1">
+        한국사람이면 알것이여.
+    </div>
+    정답보기 : <input type="checkbox">
+    <div class="d2">
+        정말 모르겠는감...?
+    </div>
+</body>
+
+</html>
