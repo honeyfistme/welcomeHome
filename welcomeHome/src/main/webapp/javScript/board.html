@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title></title>
+    <meta name="generator" content="editplus" />
+    <meta name="author" content="김종현" />
+    <style type="text/css">
+        /*디자인은 큰틀부터 디자인하자.*/
+        #list {
+            width: 500px;
+            border: 1px solid orange;
+            /*겉테두리와 안테두리를 하나로 합쳐준다. */
+            border-collapse: collapse;
+        }
+
+        /* 누구 자식인지 반드시 명시해 준다.*/
+        #list td,
+        #list th {
+            font-size: 12px;
+            border: 1px solid orange;
+            padding: 3px;
+        }
+
+        #list th {
+            background-color: #cc99cc;
+        }
+
+        #list .td1 {
+            width: 3px;
+            text-align: center;
+        }
+
+        #list .td2 {
+            width: 150px;
+            text-align: center;
+        }
+
+        #list .td3 {
+            width: 50px;
+            text-align: center;
+        }
+
+        #list .td4 {
+            width: 50px;
+            text-align: center;
+        }
+
+        #list .td5 {
+            width: 5px;
+            text-align: center;
+        }
+
+        /*부모 자식 관계 */
+        #list .altRow {
+            background-color: #e0f0b5;
+        }
+    </style>
+    <script>
+        function crateTr(num, title, writer, regDate) {
+            let trTag = document.createElement('tr');
+            trTag.setAttribute('class', 'altRow');
+            let tdTag = document.createElement('td');
+            let numTag = document.createElement
+        }
+
+        function submitFnc(e) {
+            e.preventDefault();
+            if (document.frm.num.value == '') {
+                alert('번호를 입력')
+                document.frm.num.focus()
+                return;
+            }
+            if (document.frm.title.value == '') {
+                alert('제목을 입력')
+                document.frm.title.focus()
+                return;
+            }
+            if (document.frm.name.value == '') {
+                alert('이름을 입력')
+                document.frm.name.focus()
+                return;
+            }
+            if (document.frm.regDate.value == '') {
+                alert('날짜를 입력')
+                document.frm.regDate.focus()
+                return;
+            }
+            let num = document.frm.num.value;
+            let title = document.frm.title.value;
+            let name = document.frm.name.value;
+            let regDate = document.frm.regDate.value;
+
+            let uList = document.getElementById('memberList');
+            if(uList.childNodes.length){
+                uList.insertBefore(createList(num, title, name, regDate))
+            }else{
+                uList.appendChild(createList(num, title, name, regDate))
+            }
+            document.frm.num.value = '';
+            document.frm.title.value = '';
+            document.frm.name.value = '';
+            document.frm.regDate.value = '';
+            document.frm.num.focus() = '';
+
+        }
+    </script>
+</head>
+
+<body>
+    <form name="frm" action="" onsubmit="return submitFuc(event)">
+        번호: <input type="number" name="num" id="num"><br>
+        제목: <input type="text" name="title" id="title"><br>
+        이름: <input type="text" name="writer" id="writer"><br>
+        날짜: <input type="date" name="regDate" id="regDate"><br>
+        <input type="submit" value="등록">
+    </form>
+    <!-- Ex21_board.htm -->
+    <ul id="memberList"></ul>
+
+    <h3>게시판 리스트</h3>
+    <table id="list">
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>이름</th>
+            <th>날짜</th>
+            <th>읽음</th>
+        </tr>
+
+        <tr>
+            <td class="td1">55</td>
+            <td class="td2">게시판 만들기 연습입니다.</td>
+            <td class="td3">홍길동</td>
+            <td class="td4">2012년 1월 5일</td>
+            <td class="td5">25</td>
+        </tr>
+        <tr class="altRow">
+            <td class="td1">56</td>
+            <td class="td2">게시판 만들기 연습입니다.</td>
+            <td class="td3">홍길동</td>
+            <td class="td4">2012년 1월 5일</td>
+            <td class="td5">25</td>
+
+        </tr>
+
+        <tr>
+            <td class="td1">5</td>
+            <td class="td2">게시판 만들기 연습입니다.</td>
+            <td class="td3">홍길동</td>
+            <td class="td4">2012년 1월 5일</td>
+            <td class="td5">25</td>
+        </tr>
+        <tr class="altRow">
+            <td class="td1">5</td>
+            <td class="td2">게시판 만들기 연습입니다.</td>
+            <td class="td3">홍길동</td>
+            <td class="td4">2012년 1월 5일</td>
+            <td class="td5">25</td>
+        </tr>
+
+    </table>
+
+</body>
+
+</html>
