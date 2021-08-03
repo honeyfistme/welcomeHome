@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>employee</title>
+    <script src='js/employee.js'></script>
+    <script>
+        let jsonDate = `[
+    {"id":1,"first_name":"Johann","last_name":"Evins","email":"jevins0@berkeley.edu","gender":"Agender"},
+    {"id":2,"first_name":"Thacher","last_name":"Vondrasek","email":"tvondrasek1@miibeian.gov.cn","gender":"Genderqueer"},
+    {"id":3,"first_name":"Guthry","last_name":"Jefferd","email":"gjefferd2@fda.gov","gender":"Bigender"},
+    {"id":4,"first_name":"Brien","last_name":"Blowing","email":"bblowing3@pcworld.com","gender":"Bigender"},
+    {"id":5,"first_name":"Joshuah","last_name":"Buessen","email":"jbuessen4@senate.gov","gender":"Female"},
+    {"id":6,"first_name":"Prudi","last_name":"Crutch","email":"pcrutch5@dailymotion.com","gender":"Genderfluid"},
+    {"id":7,"first_name":"Shanda","last_name":"Raiker","email":"sraiker6@angelfire.com","gender":"Agender"},
+    {"id":8,"first_name":"Federica","last_name":"Adnam","email":"fadnam7@shinystat.com","gender":"Male"},
+    {"id":9,"first_name":"Luelle","last_name":"Storrs","email":"lstorrs8@cnn.com","gender":"Genderqueer"},
+    {"id":10,"first_name":"Kile","last_name":"Warboys","email":"kwarboys9@discuz.net","gender":"Agender"}
+    ]`
+
+        console.log(jsonDate) // json 데이터
+        let objData = JSON.parse(jsonDate); // json => object변환
+        console.log(objData);
+
+        //↓요소들을 파악한 후에 이 펀션을 실행하는라는  명령
+        document.addEventListener('DOMContentLoaded', function () {
+            let tbody = document.querySelector('#list >tbody')
+
+            for (let i = 0; i < objData.length; i++) {
+                let newTr = makeRow(objData[i]);
+                tbody.appendChild(newTr);
+            }
+            document.getElementById('list').setAttribute('border','1')
+
+        });
+    </script>
+    <style type= "text/css">
+    #list {
+        width: 650px;
+        border: 1px solid rgb(190, 155, 101);
+        border-collapse: collapse;
+    }
+
+    #list thead {
+        background-color: coral;
+        color: white;
+        text-align: left;
+        font-size: 15px;
+    }
+
+    #list tr {
+        text-align: center;
+    }
+
+    #list td:nth-of-type(4){
+        text-align: left;
+    }
+
+    </style>
+</head>
+
+<body>
+    <div id="show">
+        <h3 style="text-align: center">사원정보</h3>
+        <table id='list'>
+            <thead>
+                <tr>
+                    <th>사원번호</th>
+                    <th>성</th>
+                    <th>이름</th>
+                    <th>이메일</th>
+                    <th>성별</th>
+                    <th>삭제</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 데이터 삭제 하는 버튼 넣기-->
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

@@ -57,110 +57,29 @@
             background-color: #e0f0b5;
         }
     </style>
-    <script>
-        function crateTr(num, title, writer, regDate) {
-            let trTag = document.createElement('tr');
-            trTag.setAttribute('class', 'altRow');
-            let tdTag = document.createElement('td');
-            let numTag = document.createElement
-        }
 
-        function submitFnc(e) {
-            e.preventDefault();
-            if (document.frm.num.value == '') {
-                alert('번호를 입력')
-                document.frm.num.focus()
-                return;
-            }
-            if (document.frm.title.value == '') {
-                alert('제목을 입력')
-                document.frm.title.focus()
-                return;
-            }
-            if (document.frm.name.value == '') {
-                alert('이름을 입력')
-                document.frm.name.focus()
-                return;
-            }
-            if (document.frm.regDate.value == '') {
-                alert('날짜를 입력')
-                document.frm.regDate.focus()
-                return;
-            }
-            let num = document.frm.num.value;
-            let title = document.frm.title.value;
-            let name = document.frm.name.value;
-            let regDate = document.frm.regDate.value;
-
-            let uList = document.getElementById('memberList');
-            if(uList.childNodes.length){
-                uList.insertBefore(createList(num, title, name, regDate))
-            }else{
-                uList.appendChild(createList(num, title, name, regDate))
-            }
-            document.frm.num.value = '';
-            document.frm.title.value = '';
-            document.frm.name.value = '';
-            document.frm.regDate.value = '';
-            document.frm.num.focus() = '';
-
-        }
-    </script>
 </head>
 
 <body>
+    <div id= 'inputForm'>
     <form name="frm" action="" onsubmit="return submitFuc(event)">
-        번호: <input type="number" name="num" id="num"><br>
-        제목: <input type="text" name="title" id="title"><br>
-        이름: <input type="text" name="writer" id="writer"><br>
-        날짜: <input type="date" name="regDate" id="regDate"><br>
+        번호: <input type="number" name="num" id="num" value="5"><br>
+        제목: <input type="text" name="title" id="title" value="테스트"><br>
+        이름: <input type="text" name="writer" id="writer" value="홍"><br>
+        날짜: <input type="date" name="regDate" id="regDate" value= "2021-07-12"><br>
         <input type="submit" value="등록">
+        <input type="button" value="수정">
     </form>
+</div>
     <!-- Ex21_board.htm -->
-    <ul id="memberList"></ul>
+
 
     <h3>게시판 리스트</h3>
-    <table id="list">
-        <tr>
-            <th>번호</th>
-            <th>제목</th>
-            <th>이름</th>
-            <th>날짜</th>
-            <th>읽음</th>
-        </tr>
+    
 
-        <tr>
-            <td class="td1">55</td>
-            <td class="td2">게시판 만들기 연습입니다.</td>
-            <td class="td3">홍길동</td>
-            <td class="td4">2012년 1월 5일</td>
-            <td class="td5">25</td>
-        </tr>
-        <tr class="altRow">
-            <td class="td1">56</td>
-            <td class="td2">게시판 만들기 연습입니다.</td>
-            <td class="td3">홍길동</td>
-            <td class="td4">2012년 1월 5일</td>
-            <td class="td5">25</td>
+    <script src = "js/board.js"></script>
 
-        </tr>
 
-        <tr>
-            <td class="td1">5</td>
-            <td class="td2">게시판 만들기 연습입니다.</td>
-            <td class="td3">홍길동</td>
-            <td class="td4">2012년 1월 5일</td>
-            <td class="td5">25</td>
-        </tr>
-        <tr class="altRow">
-            <td class="td1">5</td>
-            <td class="td2">게시판 만들기 연습입니다.</td>
-            <td class="td3">홍길동</td>
-            <td class="td4">2012년 1월 5일</td>
-            <td class="td5">25</td>
-        </tr>
-
-    </table>
 
 </body>
 
