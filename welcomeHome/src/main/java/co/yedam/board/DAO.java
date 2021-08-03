@@ -16,16 +16,16 @@ public class DAO {
 	public void connect() {
 		try {
 			Class.forName("org.sqlite.JDBC");
-			String url = "D:\\sqlite\\db\\chinook.db";
-			conn = DriverManager.getConnection("jdbc:sqlite:"+url);
+			String url = "D:\\sqlite\\db\\chinook\\chinook.db";
+			conn = DriverManager.getConnection("jdbc:sqlite:" + url);
 			System.out.println("connected!!");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void disconnect() {
-		if(conn != null) {
+		if (conn != null) {
 			try {
 				conn.close();
 			} catch (SQLException e) {
