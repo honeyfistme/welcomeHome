@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 @WebServlet("/CommentServlet")
 public class CommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -29,17 +32,20 @@ public class CommentServlet extends HttpServlet {
 		String cmd = request.getParameter("cmd");
 
 		if (cmd == null) {
-			StringBuffer sb = new StringBuffer();
-			sb.append("<result>");
-			sb.append("<code>error</code>");
-			sb.append("<data>");
-			sb.append("cmd null");
-			sb.append("</data>");
-			sb.append("</result>");
-			out.print(sb.toString());
+			out.print(errorXML("cmd null"));
+
+		} else if (cmd.equals("selectJson")) {
+			response.setContentType("text/json;charset=utf-8");
+			List<HashMap<String, Object>> list = //
+					CommentDAO.getInstance().selectAll();
+
+			Gson gson = new GsonBuilder().create();
+			String json = gson.toJson(list);
+			out.println(json);
 
 		} else if (cmd.equals("selectAll")) {// 목록보기
 			try {
+
 				List<HashMap<String, Object>> list = CommentDAO.getInstance().selectAll();
 				StringBuffer sb = new StringBuffer();
 				sb.append("<result>");
@@ -77,7 +83,21 @@ public class CommentServlet extends HttpServlet {
 			} catch (Exception e) {// 오류가 나면 오류출력
 				out.println(errorXML(e.getMessage()));
 			}
-		} else if (cmd.equals("upDate")) {
+			
+		}else if (cmd.equals("insertJson")) {
+			response.setContentType("text/json;charset=utf-8");
+
+			String name = request.getParameter("name");
+			String content = request.getParameter("content");
+			Comment comment = new Comment();
+			comment.setName(name);
+			comment.setContent(content);
+			HashMap<String, Object> map = //
+					CommentDAO.getInstance().insert(comment);
+			Gson gson = new GsonBuilder().create();
+			out.println(gson.toJson(map));
+			
+		} else if (cmd.equals("update")) {
 			String id = request.getParameter("id");
 			String name = request.getParameter("name");
 			String content = request.getParameter("content");
@@ -88,10 +108,44 @@ public class CommentServlet extends HttpServlet {
 			comment.setContent(content);
 
 			HashMap<String, Object> map = //
-					CommentDAO.getInstance().upDate(comment);
+					CommentDAO.getInstance().update(comment);
 			out.println(dataXML(map));
+
+		}else if(cmd.equals("updateJson")){
+			response.setContentType("text/json;charset=utf-8");
+
+			String id = request.getParameter("id");
+			String name = request.getParameter("name");
+			String content = request.getParameter("content");
+
+			Comment comment = new Comment();
+			comment.setId(id);
+			comment.setName(name);
+			comment.setContent(content);
+
+			HashMap<String, Object> map = //
+					CommentDAO.getInstance().update(comment);
+			Gson gson = new GsonBuilder().create();
+			out.println(gson.toJson(map));
+
 		} else if (cmd.equals("delete")) {
+
+			String id = request.getParameter("id");
+			HashMap<String, Object> map = //
+					CommentDAO.getInstance().delete(id);
+
+			out.println(dataXML(map));
+
+		}else if(cmd.equals("deleteJson")) {
+			response.setContentType("text/json;charset=utf-8");
 			
+			String id = request.getParameter("id");
+			
+			HashMap<String, Object> map = //
+					CommentDAO.getInstance().delete(id);
+			
+			Gson gson = new GsonBuilder().create();
+			out.println(gson.toJson(map));
 		}
 	}// end of doGet();
 
