@@ -36,7 +36,6 @@ public class GetAmtByCountryServlet extends HttpServlet {
 			
 			aryIn.add(key);
 			aryIn.add(val);
-			
 			aryOut.add(aryIn);
 		}
 		//[[k,v], [k,v], [k,v], [k,v]]: 데이터를 json배열형태로

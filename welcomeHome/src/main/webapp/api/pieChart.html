@@ -9,7 +9,8 @@
         xhtp.send();
         xhtp.onload = function () {
             let result = JSON.parse(xhtp.responseText);
-
+            //.parse: String객체를 json객체로 바꿔준다
+			console.log(result);
             var aryData = [
                 ['Task', 'Hours per Day']
             ];

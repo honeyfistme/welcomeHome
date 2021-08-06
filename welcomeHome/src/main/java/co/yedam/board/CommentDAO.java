@@ -16,7 +16,7 @@ public class CommentDAO extends DAO {
 		instance = new CommentDAO();
 		return instance;
 	}
-	
+	//pieChart을 만드는 GetAmtByCountryServlet의 DAO
 	public HashMap<String, Integer> getAmtByCountry(){
 		connect();
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
@@ -33,7 +33,6 @@ public class CommentDAO extends DAO {
 			disconnect();
 		}
 		return map;
-		
 	}
 
 	// 글삭제(매개값 글번호)
@@ -104,8 +103,8 @@ public class CommentDAO extends DAO {
 			}
 			// 2) 시퀀스 1증가후 comment 입력
 			nextId++;
-			pstmt = conn.prepareStatement("insert into comments values(?,?,?)"); // pstmt= 값을 쿼리를 만든 후에 파라메터(?)를 입력할 수
-																					// 있다
+			pstmt = conn.prepareStatement("insert into comments values(?,?,?)"); // pstmt= 값을 쿼리를 만든 후에 파라메터(?)를 입력할 수 있다
+																					
 			pstmt.setInt(1, nextId);
 			pstmt.setString(2, comment.getName());
 			pstmt.setString(3, comment.getContent());
