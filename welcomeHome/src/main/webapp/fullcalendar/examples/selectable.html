@@ -5,60 +5,87 @@
   <meta charset='utf-8' />
   <link href='../lib/main.css' rel='stylesheet' />
   <script src='../lib/main.js'></script>
+  <script src='../../js/jquery-3.6.0.min.js'></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
 
-      let xhtp = new XMLHttpRequest();
-      xhtp.open("get", "../../fullCalenderServlet?cmd=select")
-      xhtp.send();
-      xhtp.onload = function () {
-        let data = JSON.parse(xhtp.responseText);
-        console.log(data)
-        let dbData = data; //서블릿을 통해 데이터를 가져오기...1.조회, 2.입력, 3.삭제
+          let xhtp = new XMLHttpRequest();
+          xhtp.open("get", "../../fullCalenderServlet?cmd=select")
+          xhtp.send();
+          xhtp.onload = function () {
+            let data = JSON.parse(xhtp.responseText);
+            console.log(data)
+            let dbData = data; //서블릿을 통해 데이터를 가져오기...1.조회, 2.입력, 3.삭제
 
-        var calendarEl = document.getElementById('calendar');
+            var calendarEl = document.getElementById('calendar');
 
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          headerToolbar: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay'
-          },
-          initialDate: '2021-08-12',
-          navLinks: true, // can click day/week names to navigate views
-          selectable: true,
-          selectMirror: true,
-          //이벤트등록
-          select: function (arg) {
-        	  
-            var title = prompt('Event Title:');
-            if (title) {
-            	$.ajax({})
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+              headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+              },
+              initialDate: '2021-08-12',
+              navLinks: true, // can click day/week names to navigate views
+              selectable: true,
+              selectMirror: true,
+              select: insertCollBack,
+              eventClick: deleteColl,
+              editable: true,
+              dayMaxEvents: true, // allow "more" link when too many events
+              events: dbData
+              //이벤트등록
+            });
+
+            function insertCollBack(arg) {
+              var title = prompt('Event Title:');
+              if (title) {
+                $.ajax({
+                  url: '../../fullCalenderServlet',
+                  data: {
+                    cmd: 'insert'
+                  },
+                  success: function () {
+                    calendar.addEvent({
+                      title: title,
+                      start: arg.start,
+                      end: arg.end,
+                      allDay: arg.allDay
+                    })
+                  },
+                  error: function (reject) {
+                    console.log(reject)
+                  },
+                  complete: function () {
+                    calendar.unselect()
+                  }
+
+                });
+              }
+            } //insert end
+            //이벤트삭제
+            function deleteColl(arg) {
               console.log(arg)
-              calendar.addEvent({
-                title: title,
-                start: arg.start,
-                end: arg.end,
-                allDay: arg.allDay
-              })
-            }
-            calendar.unselect()
-          },
-          //이벤트삭제
-          eventClick: function (arg) {
-            console.log(arg)
-            if (confirm('Are you sure you want to delete this event?')) {
-              arg.event.remove()
-            }
-          },
-          editable: true,
-          dayMaxEvents: true, // allow "more" link when too many events
-          events: dbData
+              if (confirm('Are you sure you want to delete this event?')) {
+                $ajax({
+                  url: '../../fullCalenderServlet',
+                  data: {
+                    cmd: 'delete',
+                    title: arg.el.innerText
+                  },
+                  success: function (resolve) {
+                    arg.event.remove()
+                  },
+                  error: function (reject) {
+                    console.log(reject)
+                  }
+                })
+              }
+            } //end of deleteColl
 
+            calendar.render();
+          }
         });
-        calendar.render();
-      }
-    });
   </script>
   <style>
     body {

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script>
+        let xhtp = new XMLHttpRequest();
+        xhtp.open('get', 'employees.xml');
+        xhtp.send();
+        xhtp.onload = function () {
+            let xmlDoc = this.responseXML;
+            let re = xmlDoc.getElementsByTagName('record');
+            let ul = document.createElement('ul');
+            for (let i = 0; i < re.length; i++) {
+                console.log(re[i].children[1])
+                let li = document.createElement('li');
+                li.innerHTML = re[i].children[0].innerHTML 
+                    +' '+re[i].children[1].innerHTML +' '+
+                    re[i].children[5].innerHTML
+                ul.appendChild(li)
+                document.getElementsByTagName('body')[0].appendChild(ul)
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
